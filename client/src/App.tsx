@@ -1,36 +1,55 @@
-import{ useEffect, useState } from 'react';
-import './App.css';
-import EmployeeCard from './EmployeeCard';
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 
-interface Employee {
-  name: {
-    first: string;
-    last: string;
-  };
-  email: string;
-  picture: {
-    medium: string;
-  };
-}
+import "./App.css";
+import Footer from "./components/Footer";
 
 const App = () => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [facts, setFacts] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchFacts = useCallback(() => {
+    setLoading(true);
+    axios
+      .get("https://meowfacts.herokuapp.com/")
+      .then((response) => {
+        setFacts(response.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
-    fetch('https://randomuser.me/api/?results=5')
-      .then(response => response.json())
-      .then(data => setEmployees(data.results))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+    fetchFacts();
+  }, [fetchFacts]);
 
   return (
     <div className="App">
-      {employees.map((employee, index) => (
-        <EmployeeCard key={index} employee={employee} />
-      ))}
+      <header className="header">My Awesome Site</header>
+      <main className="content">
+        <button type="button" onClick={fetchFacts} className="fetch-button">
+          new fact
+        </button>
+        {loading ? (
+          <p className="loading-text">Loading...</p>
+        ) : (
+          <div className="fact-list">
+            {facts.map((fact) => (
+              <div key={fact} className="cat-card">
+                <div className="cat-face">
+                  <p>{fact}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
-

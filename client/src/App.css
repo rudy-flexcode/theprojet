@@ -1,145 +1,161 @@
-* {
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+html,
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  height: 100%;
 }
 
-body {
-  font-family: "Lato", sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #eee;
-  margin: 0;
-}
-
-#root {
-  height: 100vh;
-  background-image: url("./assets/images/background.webp");
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url("../public/images/chatNoir.jpg");
   background-size: cover;
-  background-position: top;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr;
-  align-content: start;
-  padding: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-header {
-  grid-column: 1 / 2;
-  grid-row: 1;
+.header {
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  color: #f8f3f3;
+  font-family: "Manrope", sans-serif;
+  font-size: 3em;
+  font-weight: 700;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.logo {
-  font-size: larger;
-}
-
-.navbar {
-  grid-column: -2 / -1;
-  grid-row: 1;
-}
-
-.navbar ul {
+.content {
+  flex: 1;
   display: flex;
-  justify-content: end;
-  gap: 1rem;
-  list-style: none;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #eee;
-  display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.navbar a:hover {
-  scale: 110%;
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  margin: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.text-box {
-  grid-column: 1 / -1;
-  grid-row: 1;
-  align-self: center;
+.cat-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-.block-primary {
-  text-transform: uppercase;
-  margin-bottom: 2rem;
+.cat-face img {
+  max-width: 100%;
+  border-radius: 50%;
 }
 
-.block-primary-main {
-  font-size: 3em;
-  letter-spacing: 5px;
-  animation: blink 12s infinite;
+.cat-face p {
+  margin: 0;
+  font-size: 1.5em;
+  color: #f1efef;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
 }
 
-.block-primary-sub {
-  display: block;
-  font-weight: bold;
-  letter-spacing: 7px;
-}
-
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
+.fetch-button {
+  background-color: #12ccda;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
   text-decoration: none;
-  padding: 0.5rem 1rem;
   display: inline-block;
-  border-radius: 100px;
-  transition: all 0.2s;
-  position: relative;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Manrope", sans-serif;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.fetch-button:hover {
+  background-color: #12cdda71;
 }
 
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.btn-white {
-  background-color: #fff;
-  color: #777;
+.loading-text {
+  color: white;
 }
 
 footer {
-  grid-column: -2 / -1;
-  grid-row: 1;
-  align-self: end;
-  text-align: right;
+  margin-top: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: #222;
+  color: #ccc;
+  text-align: center;
+  font-size: 14px;
 }
 
-.wcs {
+footer a {
+  color: #12ccda;
   text-decoration: none;
-  color: #ff1493ad;
 }
 
-.wcs:hover {
+footer a:hover {
   text-decoration: underline;
 }
 
-@keyframes blink {
-  20%,
-  24%,
-  55% {
-    color: #111;
-    text-shadow: none;
+/* Media Queries */
+@media (max-width: 768px) {
+  .cat-card {
+    width: 90%;
+    padding: 15px;
+    margin: 10px;
   }
-  0%,
-  19%,
-  21%,
-  23%,
-  25%,
-  54%,
-  56%,
-  100% {
-    text-shadow: 0 0 5px #ff1493ad, 0 0 15px #eee, 0 0 20px #ff1493ad, 0 0 40px
-      #a00ac9, 0 0 60px #ff0000, 0 0 10px #970dc5, 0 0 98px #ff0000;
-    color: #fff;
+
+  .fetch-button {
+    width: 80%;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .cat-face p {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .cat-card {
+    width: 80%;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 1.5em;
+  }
+
+  .fetch-button {
+    width: 90%;
+    padding: 6px 10px;
+    font-size: 20px;
+  }
+
+  .cat-face p {
+    font-size: 0, 2em;
+  }
+  .header {
+    font-size: 1em;
   }
 }

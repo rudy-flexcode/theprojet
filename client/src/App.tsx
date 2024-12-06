@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="header">My Awesome Site</header>
+      <header className="header">facts about cats 😻</header>
       <main className="content">
         <button type="button" onClick={fetchFacts} className="fetch-button">
           new fact

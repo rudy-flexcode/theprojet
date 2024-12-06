@@ -1,6 +1,4 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-
+import  { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 
@@ -10,13 +8,13 @@ const App = () => {
 
   const fetchFacts = useCallback(() => {
     setLoading(true);
-    axios
-      .get("https://meowfacts.herokuapp.com/")
-      .then((response) => {
-        setFacts(response.data.data);
+    fetch("https://meowfacts.herokuapp.com/")
+      .then((response) => response.json())
+      .then((data: { data: string[] }) => {
+        setFacts(data.data);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
